@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>D3 Test</title>
+        <script type="text/javascript" src="http://cdn.bootcss.com/d3/4.1.1/d3.min.js"></script>
+        <style type="text/css">
+        div.bar {
+            display: inline-block;
+            width: 20px;
+            height: 75px;   /* We'll override this later */
+            background-color: teal;
+        }
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+        var dataset = [ 5, 10, 15, 20, 25 ];
+
+        d3.select("body")
+          .selectAll("p")
+          .data(dataset)
+          .enter()  //binding data
+          .append("p")
+          .text(function (d) {
+            return d;
+          });
+
+          d3.select("body")
+            .selectAll("div")
+            .data(dataset)
+            .enter()
+            .append("div")
+            .attr("class", "bar") //set class
+            .style("height", function (d) {
+              var BarHeight = d * 5;
+              return BarHeight + "px";
+            })
+            .style("margin-left", "2px");
+        </script>
+    </body>
+</html>
